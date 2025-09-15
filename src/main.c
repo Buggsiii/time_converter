@@ -13,7 +13,7 @@ int calc(int *rest, int amount) {
 
 int main(void) {
   int input;
-  printf("Seconds: ");
+  printf("Sekunder: ");
   scanf("%d", &input);
 
   int rest = input;
