@@ -8,9 +8,9 @@
       "args": [
         "-g",
         "-O0",
-        "${file}",
+        "${workspaceFolder}/src/main.c",
         "-o",
-        "${fileDirname}\\${fileBasenameNoExtension}.exe"
+        "${workspaceFolder}/src/main.exe"
       ],
       "problemMatcher": ["$gcc"],
       "group": "build"
