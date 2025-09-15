@@ -1,23 +1,28 @@
-#include "utils.c"
 #include <stdio.h>
-#define len(a) (sizeof(a) / sizeof((a)[0]))
+
+#define SECONDS_IN_WEEK 604800
+#define SECONDS_IN_DAY 86400
+#define SECONDS_IN_HOUR 3600
+#define SECONDS_IN_MINUTE 60
+
+int calc(int *rest, int amount) {
+  int output = (*rest - *rest % amount) / amount;
+  *rest = *rest % amount;
+  return output;
+}
 
 int main(void) {
-  const char *units[] = {"Seconds", "Minutes", "Hours", "Days",
-                         "Weeks",   "Months",  "Years"};
-  const int choice_count = len(units);
-  const enum Unit input_unit =
-      choice("What unit is your input?", units, choice_count);
+  int input;
+  printf("Seconds: ");
+  scanf("%d", &input);
 
-  double input;
-  printf("\nHow many %s: ", units[input_unit]);
-  scanf_s("%lf", &input);
+  int rest = input;
+  int weeks = calc(&rest, SECONDS_IN_WEEK);
+  int days = calc(&rest, SECONDS_IN_DAY);
+  int hours = calc(&rest, SECONDS_IN_HOUR);
+  int minutes = calc(&rest, SECONDS_IN_MINUTE);
+  int seconds = rest;
 
-  const enum Unit output_unit =
-      choice("What unit is your output?", units, choice_count);
-
-  double output = convert(input, input_unit, output_unit);
-
-  printf("\n%.2lf %s is %.2lf %s", input, units[input_unit], output,
-         units[output_unit]);
+  printf("%d uger, %d dage, %d timer, %d minutter og %d sekunder", weeks, days,
+         hours, minutes, seconds);
 }
